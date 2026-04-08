@@ -540,64 +540,87 @@ body::before {
 
 /* ─── Haldi Highlight Cards ─── */
 .haldi-highlights {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
   margin: 24px 0;
 }
-@media (max-width: 600px) { .haldi-highlights { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 380px) { .haldi-highlights { grid-template-columns: 1fr; } }
 
 .h-card {
-  background: rgba(232,121,154,.08);
-  border: 1px solid rgba(232,121,154,.25);
-  border-radius: 14px; padding: 18px 14px;
+  background: linear-gradient(135deg, rgba(232,121,154,.1), rgba(232,121,154,.04));
+  border: 1px solid rgba(232,121,154,.22);
+  border-radius: 16px; padding: 22px 16px;
   display: flex; flex-direction: column; align-items: center; gap: 10px;
-  transition: transform .3s, box-shadow .3s;
+  transition: transform .35s cubic-bezier(.25,.46,.45,.94), box-shadow .35s, border-color .35s;
+  position: relative; overflow: hidden;
+}
+.h-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(232,121,154,.4), transparent);
 }
 .h-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(232,121,154,.2);
-  border-color: rgba(232,121,154,.5);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(232,121,154,.22);
+  border-color: rgba(232,121,154,.45);
 }
-.h-card-icon { font-size: 28px; }
+.h-card-icon { font-size: 32px; line-height: 1; }
 .h-card-label {
-  font-family: var(--fd); font-size: 7.5px; letter-spacing: 2.5px;
+  font-family: var(--fd); font-size: 8px; letter-spacing: 3px;
   text-transform: uppercase; color: var(--pk); text-align: center;
 }
 .h-card-desc {
-  font-family: var(--fc); font-size: 13px; color: rgba(244,184,200,.7);
-  line-height: 1.6; text-align: center;
+  font-family: var(--fc); font-size: 13.5px; color: rgba(244,184,200,.65);
+  line-height: 1.65; text-align: center;
 }
 
 /* ─── Dress Code Banner ─── */
 .dress-banner {
-  background: linear-gradient(135deg, rgba(232,121,154,.18), rgba(255,150,180,.08), rgba(232,121,154,.14));
-  border: 1px solid rgba(232,121,154,.45);
-  border-radius: 16px; padding: 20px 26px;
-  margin: 20px 0; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, rgba(232,121,154,.15) 0%, rgba(255,100,150,.06) 50%, rgba(232,121,154,.12) 100%);
+  border: 1px solid rgba(232,121,154,.5);
+  border-radius: 20px; padding: 28px 32px;
+  margin: 24px 0; position: relative; overflow: hidden;
+  text-align: center;
 }
 .dress-banner::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(232,121,154,.08), transparent);
+  background: radial-gradient(ellipse 70% 70% at 50% 0%, rgba(232,121,154,.12), transparent 70%);
   pointer-events: none;
 }
+.dress-banner::after {
+  content: '🌸';
+  position: absolute; top: 14px; right: 18px;
+  font-size: 20px; opacity: .25; pointer-events: none;
+}
 .dress-banner-inner {
-  display: flex; align-items: center; gap: 18px; flex-wrap: wrap; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
   position: relative; z-index: 1;
 }
-.dress-icon { font-size: 38px; flex-shrink: 0; }
-.dress-text { text-align: left; }
+.dress-icon { font-size: 42px; line-height: 1; }
+.dress-text { text-align: center; }
 .dress-title {
-  font-family: var(--fd); font-size: 9px; letter-spacing: 4px;
-  text-transform: uppercase; color: rgba(244,184,200,.6); margin-bottom: 6px;
+  font-family: var(--fd); font-size: 8px; letter-spacing: 5px;
+  text-transform: uppercase; color: rgba(244,184,200,.55); margin-bottom: 8px;
 }
 .dress-code {
-  font-family: var(--fs); font-size: clamp(28px, 5vw, 40px);
+  font-family: var(--fs); font-size: clamp(36px, 7vw, 56px);
   color: var(--pk);
-  text-shadow: 0 0 30px rgba(232,121,154,.6), 0 0 60px rgba(232,121,154,.2);
+  text-shadow: 0 0 40px rgba(232,121,154,.7), 0 0 80px rgba(232,121,154,.25);
   line-height: 1;
 }
-.dress-emojis { font-size: 22px; letter-spacing: 4px; margin-top: 4px; }
+.dress-subtitle {
+  font-family: var(--fc); font-size: clamp(13px, 2vw, 15px);
+  color: rgba(244,184,200,.65); letter-spacing: 0.5px; margin-top: 4px;
+  font-style: italic;
+}
+.dress-swatches {
+  display: flex; align-items: center; gap: 8px; margin-top: 10px; justify-content: center;
+}
+.dress-swatch {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 0 12px currentColor;
+}
+.dress-emojis { font-size: 20px; letter-spacing: 6px; margin-top: 6px; }
 
 /* ─── Haldi Hashtag in section ─── */
 .haldi-hashtag-block {
@@ -909,7 +932,9 @@ footer {
 
     <span class="eyebrow gsap-up" style="color:#E8799A;">Morning Ceremony · Saturday, 18 April 2026</span>
 
-    <h2 class="gsap-up" style="font-family:var(--fs);font-size:clamp(64px,12vw,128px);color:#F4B8C8;text-shadow:0 0 55px rgba(232,121,154,.55),0 0 110px rgba(232,121,154,.25);line-height:1;margin-bottom:6px;">Pink Haldi</h2>
+    <h2 class="gsap-up" style="font-family:var(--fs);font-size:clamp(64px,12vw,128px);color:#F4B8C8;text-shadow:0 0 55px rgba(232,121,154,.55),0 0 110px rgba(232,121,154,.25);line-height:1;margin-bottom:2px;">Pink Haldi</h2>
+
+    <p class="gsap-up" style="font-family:var(--fd);font-size:8px;letter-spacing:6px;color:rgba(232,121,154,.55);text-transform:uppercase;margin-bottom:16px;">Riddhi &amp; Ankit · 2026</p>
 
     <!-- Pink theme badge -->
     <div class="gsap-up" style="display:flex;justify-content:center;">
@@ -925,7 +950,7 @@ footer {
     <div class="orn gsap-up"><span style="color:#E8799A;font-size:20px;">✿</span></div>
 
     <p class="gsap-up" style="font-family:var(--fp);font-style:italic;font-size:clamp(15px,2.2vw,18px);color:rgba(244,184,200,.75);margin-bottom:24px;line-height:1.9;">
-      "Drench your heart in joy — a sunlit morning of laughter,<br>blessings &amp; the brightest of colors"
+      "Drench your heart in joy — a sunlit morning of laughter,<br>blessings &amp; the most beautiful shades of pink"
     </p>
 
     <!-- Splash animation -->
@@ -949,13 +974,16 @@ footer {
         <div class="dress-text">
           <div class="dress-title">Dress Code for the Day</div>
           <div class="dress-code">All Pink</div>
-          <div class="dress-emojis">🌸 🩷 💕 🌺 💗</div>
+          <div class="dress-subtitle">Blush · Rose · Hot Pink · Pastel · All shades welcome</div>
         </div>
-        <div style="text-align:left;">
-          <div style="font-family:var(--fc);font-size:14px;color:rgba(244,184,200,.7);line-height:1.8;">
-            Wear your prettiest pinks —<br>from blush to hot pink,<br>all shades welcome!
-          </div>
+        <div class="dress-swatches">
+          <div class="dress-swatch" style="background:#FFB3CC;color:#FFB3CC;"></div>
+          <div class="dress-swatch" style="background:#E8799A;color:#E8799A;"></div>
+          <div class="dress-swatch" style="background:#C9184A;color:#C9184A;"></div>
+          <div class="dress-swatch" style="background:#F4B8C8;color:#F4B8C8;"></div>
+          <div class="dress-swatch" style="background:#FF69B4;color:#FF69B4;"></div>
         </div>
+        <div class="dress-emojis">🌸 🩷 💕 🌺 💗</div>
       </div>
     </div>
 
@@ -964,7 +992,7 @@ footer {
       <div class="h-card">
         <div class="h-card-icon">💛</div>
         <div class="h-card-label">Haldi Ritual</div>
-        <div class="h-card-desc">Sacred turmeric blessings for the bride</div>
+        <div class="h-card-desc">Sacred turmeric blessings for the bride &amp; groom</div>
       </div>
       <div class="h-card">
         <div class="h-card-icon">🌸</div>
@@ -974,22 +1002,12 @@ footer {
       <div class="h-card">
         <div class="h-card-icon">💃</div>
         <div class="h-card-label">Sangeet &amp; Dance</div>
-        <div class="h-card-desc">Music, moves &amp; joyful chaos</div>
+        <div class="h-card-desc">Music, moves &amp; joyful celebration</div>
       </div>
       <div class="h-card">
         <div class="h-card-icon">📸</div>
         <div class="h-card-label">Candid Moments</div>
-        <div class="h-card-desc">Capture every laugh &amp; memory</div>
-      </div>
-      <div class="h-card">
-        <div class="h-card-icon">🎀</div>
-        <div class="h-card-label">Pink Theme</div>
-        <div class="h-card-desc">Fully pink-themed décor &amp; setup</div>
-      </div>
-      <div class="h-card">
-        <div class="h-card-icon">🍰</div>
-        <div class="h-card-label">Celebration Bites</div>
-        <div class="h-card-desc">Delicious treats &amp; refreshments</div>
+        <div class="h-card-desc">Capture every laugh &amp; memory together</div>
       </div>
     </div>
 
@@ -1016,9 +1034,6 @@ footer {
         <span>Get Directions</span>
         <span class="dir-pin">📍</span>
       </a>
-      <button class="btn btn-pkf" onclick="G('rsvp')">
-        ✦ RSVP Now ✦
-      </button>
     </div>
 
   </div>
